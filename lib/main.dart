@@ -4,27 +4,15 @@ void main() {
   runApp(const InnovationHelloApp());
 }
 
-// =====================================================================
-// 个性化修改清单（满足讲义要求的 4 处以上）：
-//  1. MaterialApp 主题色改为深青色 (Colors.teal)
-//  2. AppBar 标题改为 "邓卓 的创新实验 Flutter 首页"（含本人姓名）
-//  3. 图标从 rocket_launch 改为 school（学习主题）
-//  4. 页面提示语改为个人专属文案
-//  5. 姓名 / 学号后四位 / 小组编号信息独立一行展示
-//  6. 按钮文案改为 "完成一次学习打卡"，图标改为 menu_book
-//  7. 计数含义改为 "今日学习打卡次数"
-//  8. 新增卡片容器包裹核心信息，视觉层次更丰富
-// =====================================================================
-
 class InnovationHelloApp extends StatelessWidget {
   const InnovationHelloApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '创新实验 Flutter 第14周',
-      // ✅ 修改1：主题色换成深青色
+      title: '创新实验 Flutter 入门 - 马敏楠',
       theme: ThemeData(
+        // 修改1：主题色改为青色（teal）
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
         useMaterial3: true,
       ),
@@ -41,89 +29,60 @@ class HelloHomePage extends StatefulWidget {
 }
 
 class _HelloHomePageState extends State<HelloHomePage> {
-  int studyCount = 0; // ✅ 修改7：变量名改为 studyCount，含义更明确
+  // 修改2：变量名改为打卡次数，含义更明确
+  int checkedInCount = 0;
 
-  void doOneStudy() {
+  void finishOneCheckIn() {
     setState(() {
-      studyCount += 1;
+      checkedInCount += 1;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
     return Scaffold(
-      // ✅ 修改2：AppBar 标题含姓名
       appBar: AppBar(
-        title: const Text('邓卓 的创新实验 Flutter 首页'),
-        backgroundColor: colorScheme.inversePrimary,
+        // 修改3：AppBar 标题包含姓名
+        title: const Text('马敏楠的创新实验 Flutter 首页'),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          padding: const EdgeInsets.all(24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // ✅ 修改3：图标改为 school
-              Icon(Icons.school, size: 80, color: colorScheme.primary),
-              const SizedBox(height: 20),
-              // ✅ 修改4：页面提示语改为个人文案
+              // 修改4：图标换成 school，配合主题色
+              Icon(Icons.school, size: 72, color: Theme.of(context).colorScheme.primary),
+              const SizedBox(height: 24),
+              // 修改5：页面说明包含姓名
               const Text(
-                'Hello Flutter！\n我已完成第 14 周创新实验入门任务 🎉',
+                'Hello Flutter！马敏楠已完成第14周入门任务！',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 16),
-              // ✅ 修改5：姓名 / 学号 / 小组独立展示，使用 Card 包裹
-              Card(
-                elevation: 3,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 14,
-                  ),
-                  child: Column(
-                    children: const [
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(Icons.person, size: 18),
-                          SizedBox(width: 6),
-                          Text('姓名：邓卓　　学号后四位：0168'),
-                        ],
-                      ),
-                      SizedBox(height: 6),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(Icons.group, size: 18),
-                          SizedBox(width: 6),
-                          Text('小组：第 9 组'),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+              // 修改6：填入真实姓名、小组编号和学号后四位
+              const Text(
+                '姓名：马敏楠｜小组：第9组（0189）',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16, color: Colors.grey),
               ),
-              const SizedBox(height: 28),
-              // ✅ 修改7：计数含义改为学习打卡次数
+              const SizedBox(height: 32),
+              // 修改7：计数含义改为「打卡次数」
               Text(
-                '今日学习打卡次数：$studyCount 次',
+                '今日打卡次数：$checkedInCount 次',
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
             ],
           ),
         ),
       ),
-      // ✅ 修改6：按钮文案与图标均改为学习主题
+      // 修改8：按钮图标和文案调整
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: doOneStudy,
-        icon: const Icon(Icons.menu_book),
-        label: const Text('完成一次学习打卡'),
+        onPressed: finishOneCheckIn,
+        icon: const Icon(Icons.add_task),
+        label: const Text('完成一次打卡'),
       ),
     );
   }
