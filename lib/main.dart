@@ -7,7 +7,7 @@ void main() {
 // =====================================================================
 // 个性化修改清单（满足讲义要求的 4 处以上）：
 //  1. MaterialApp 主题色改为深青色 (Colors.teal)
-//  2. AppBar 标题改为 "XXX 的创新实验 Flutter 首页"（含本人姓名占位）
+//  2. AppBar 标题改为 "邓卓 的创新实验 Flutter 首页"（含本人姓名）
 //  3. 图标从 rocket_launch 改为 school（学习主题）
 //  4. 页面提示语改为个人专属文案
 //  5. 姓名 / 学号后四位 / 小组编号信息独立一行展示
@@ -56,7 +56,7 @@ class _HelloHomePageState extends State<HelloHomePage> {
     return Scaffold(
       // ✅ 修改2：AppBar 标题含姓名
       appBar: AppBar(
-        title: const Text('XXX 的创新实验 Flutter 首页'),
+        title: const Text('邓卓 的创新实验 Flutter 首页'),
         backgroundColor: colorScheme.inversePrimary,
       ),
       body: Center(
@@ -93,7 +93,7 @@ class _HelloHomePageState extends State<HelloHomePage> {
                         children: [
                           Icon(Icons.person, size: 18),
                           SizedBox(width: 6),
-                          Text('姓名：XXX　　学号后四位：0000'),
+                          Text('姓名：邓卓　　学号后四位：0168'),
                         ],
                       ),
                       SizedBox(height: 6),
@@ -102,7 +102,7 @@ class _HelloHomePageState extends State<HelloHomePage> {
                         children: [
                           Icon(Icons.group, size: 18),
                           SizedBox(width: 6),
-                          Text('小组：第 X 组'),
+                          Text('小组：第 9 组'),
                         ],
                       ),
                     ],
